@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ===== Paleta ===== */
+  --background: #F8F5EF;   /* Marfil */
+  --foreground: #171A1C;   /* Texto principal (Ink) */
+  
+  --leaf: #2F7A3E;         /* Verde hoja */
+  --leaf-dark: #215C2E;    /* Verde más oscuro */
+  --leaf-muted: #DDEEE2;   /* Verde clarito */
+  --yellow: #F5D565;       /* Amarillo suave */
+
+  /* ===== Tipografía ===== */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope", "Inter", system-ui, sans-serif;
+
+  /* ===== Tamaños de fuente ===== */
+  --text-sm: 0.95rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+
+  /* ===== Radios y sombras ===== */
+  --radius: 1rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.5rem;
+  --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.08);
+
+  /* ===== Transiciones ===== */
+  --transition: 220ms cubic-bezier(.2, .8, .2, 1);
+
+  /* ===== Estados ===== */
+  --hover-bg: rgba(47, 122, 62, 0.08); /* verde con alpha */
+  --focus-ring: #F5D565; /* amarillo */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
+/* Base */
+html, body {
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* Selección */
+::selection {
+  background: var(--yellow);
+  color: var(--foreground);
+}
+
+/* Focus accesible */
+a:focus-visible, button:focus-visible {
+  outline: 2px dashed var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* ==== Utilidades con variables ==== */
+.btn {
+  @apply inline-flex items-center justify-center rounded-xl px-5 py-3 font-medium transition;
+  background: var(--leaf);
+  color: rgb(254, 251, 251);
+  box-shadow: var(--shadow-soft);
+  transition: background var(--transition);
+}
+
+.btn:hover { background: var(--leaf-dark); }
+
+.btn.secondary {
+  background: var(--yellow);
+  color: var(--foreground);
+}
+
+.card {
+  @apply rounded-xl bg-white/70 backdrop-blur border border-white/40;
+  box-shadow: var(--shadow-soft);
+}
+
+.section {
+  @apply py-16 md:py-24;
 }
